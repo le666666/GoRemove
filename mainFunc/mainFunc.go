@@ -20,7 +20,7 @@ func MainFunc(FileOrPath *[]string) {
 	file := isRoot(files)
 	if fileSize(file, int64(size)) == true {
 		Remover(file)
-	}else {
+	} else {
 		Recycle(file)
 	}
 }
@@ -35,8 +35,8 @@ func fileSize(FileOrPath *[]string, fileSize int64) bool {
 	}()
 	for _, value := range *FileOrPath {
 		if size, _ := os.Stat(value); size.Size() >= fileSize {
-		return true
-	}
+			return true
+		}
 	}
 	return false
 }
@@ -68,7 +68,7 @@ func Recycle(FileOrPath *[]string) {
 	var tmp string
 	for _, value := range *FileOrPath {
 		filename := path.Base(value) // 获取文件名称
-		tmp = "./tmp/" + filename // 拼接字符串
+		tmp = "/tmp/" + filename     // 拼接字符串
 		if err := os.Rename(value, tmp); err != nil {
 			log.Printf("Error: Delete failure!%v", err)
 		}
