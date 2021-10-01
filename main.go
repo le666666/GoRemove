@@ -12,7 +12,7 @@ func main() {
 }
 
 // 判断命令行参数
-func command(par *[]string)  {
+func command(par *[]string) {
 	pars := *par
 	switch pars[1] {
 	// -r 选项直接删除
@@ -28,8 +28,9 @@ func command(par *[]string)  {
 Usage:  grm [OPTIONS] FileOrPath
 
 Options:
-	-r		Delete files directly
-	-m		Move files to the recycle bin
+	-h		See the help；
+	-r		Delete files directly；
+	-m		Move files to the recycle bin；
 Config:
 	Path: Configuration file path /etc/grm/conf.yml;
 	Size: Files larger than size will be deleted and will not be reclaimed;
