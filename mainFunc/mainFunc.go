@@ -1,6 +1,7 @@
 package mainFunc
 
 import (
+	"fmt"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
@@ -85,4 +86,11 @@ func isRoot(file []string) *[]string {
 	return &file
 }
 
-// TODO: 文件恢复
+// Restore TODO: 文件恢复
+func Restore() {
+	recycleBin, _ := ioutil.ReadDir("/etc")
+	// 列出回收站文件
+	for _, value := range recycleBin {
+		fmt.Println(value.Name())
+	}
+}
