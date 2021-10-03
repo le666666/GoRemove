@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"os/user"
 	"path"
 )
 
@@ -28,12 +29,6 @@ func MainFunc(FileOrPath *[]string) {
 
 // 判断文件大小
 func fileSize(FileOrPath *[]string, fileSize int64) bool {
-	// 抛错，如果文件不存在会报错
-	defer func() {
-		if err := recover(); err != nil {
-			log.Println("NotFile")
-		}
-	}()
 	for _, value := range *FileOrPath {
 		if size, _ := os.Stat(value); size.Size() >= fileSize {
 			return true
@@ -44,7 +39,9 @@ func fileSize(FileOrPath *[]string, fileSize int64) bool {
 
 // 读取配置
 func (c *conf) readConf() int {
-	yamlFile, err := ioutil.ReadFile("mainFunc/conf.yml")
+	homePath, _ := user.Current()
+	confPath := homePath.HomeDir + "/.config/goremove/conf.yml" // 获取到用户的家目录
+	yamlFile, err := ioutil.ReadFile(confPath)
 	if err != nil {
 		log.Println("Error: Configuration file conf.yml could not be found")
 	}

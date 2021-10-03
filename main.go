@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	rm "remove_Go/mainFunc"
 )
@@ -13,6 +14,11 @@ func main() {
 
 // 判断命令行参数
 func command(par *[]string) {
+	defer func() {
+		if err := recover(); err != nil {
+			log.Println("NotFile")
+		}
+	}()
 	pars := *par
 	switch pars[1] {
 	// -r 选项直接删除
